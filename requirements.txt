@@ -3,3 +3,4 @@ matplotlib
 nltk
 scikit-learn
 streamlit
+wordcloud
