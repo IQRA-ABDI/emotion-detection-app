@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
@@ -12,6 +13,9 @@ from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
 import streamlit as st
+
+# Set the NLTK data path to the local directory
+nltk.data.path.append('./nltk_data')
 
 # Set Streamlit theme to light
 st.set_page_config(layout="centered", page_title="Emotion Detection", page_icon="🙂")
@@ -66,11 +70,7 @@ else:
     st.bar_chart(class_distribution)
 
     ## Create visualizations
-    # Download nltk resources
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    nltk.download('wordnet')
-
+    # Generate word clouds
     @st.cache_data(show_spinner=False)  # Cache the word cloud generation
     def generate_wordclouds(data_combined):
         wordclouds = {}
