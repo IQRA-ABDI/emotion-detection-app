@@ -151,7 +151,12 @@ else:
 
     if st.button("Submit"):
         if new_statement:
-            predicted_label = predict_new_statement(new_statement, logreg, tfidf_vect)
-            st.write(f"oraahda la soo galiyay waxey ka turjumeysaa : {predicted_label}")
+            # Check if any word in the new statement exists in the data
+            all_words = set(" ".join(data_combined['text']).split())
+            new_words = set(new_statement.split())
+            if new_words.intersection(all_words):
+                predicted_label = predict_new_statement(new_statement, logreg, tfidf_vect)
+                st.write(f"oraahda la soo galiyay waxey ka turjumeysaa : {predicted_label}")
+            else:
+                st.write("This word is not known.")
 
-# Run the app with streamlit run app.py in your terminal
