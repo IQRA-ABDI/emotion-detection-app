@@ -147,7 +147,7 @@ else:
         return prediction[0]
 
     ## Input a new statement and predict its category
-    new_statement = st.text_input("Soo gali oraah:")
+    new_statement = st.text_input("Soo Gali Oraah:")
 
     if st.button("Submit"):
         if new_statement:
@@ -155,8 +155,7 @@ else:
             all_words = set(" ".join(data_combined['text']).split())
             new_words = set(new_statement.split())
             if new_words.intersection(all_words):
-                predicted_label = predict_new_statement(new_statement, logreg, tfidf_vect)
-                st.write(f"oraahda la soo galiyay waxey ka turjumeysaa : {predicted_label}")
+                predicted_label = predict_new_statement(new_statement, svm, tfidf_vect)  # Use SVM for prediction
+                st.write(f"Oraahda La Soo Galiyay Waxey Ka Turjumeysaa : {predicted_label}")
             else:
-                st.write("This word is not known.")
-
+                st.write("Ereygaan Lama Yaqaano.")
